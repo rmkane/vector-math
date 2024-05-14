@@ -1,0 +1,7 @@
+# Top-most EditorConfig file
+root = true
+
+# Defaults
+[*]
+end_of_line = lf
+insert_final_newline = true

@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+// Define versions
+ext.versions = [
+        junit  : '5.11.0-M1',
+        logback: '1.5.6',
+        lombok : '1.18.32',
+        slf4j  : '2.0.12'
+]
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Logging
+    implementation "ch.qos.logback:logback-classic:${versions.logback}"
+    implementation "org.slf4j:slf4j-api:${versions.slf4j}"
+
+    // Lombok
+    compileOnly "org.projectlombok:lombok:${versions.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
+
+    // JUnit 5
+    testImplementation platform("org.junit:junit-bom:${versions.junit}")
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
